@@ -1,0 +1,155 @@
+{% extends layout("admin") %}
+
+{% block content %}
+<style>
+.group {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid #eceeef;
+}
+.remove-form .form-group,
+.add-form .role-field {
+    display: none;
+}
+
+.users {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.users .user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: #11bef6;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+}
+
+.users .user span {
+    color: white;
+    font-weight: 600;
+    padding-right: 0.25rem;
+}
+
+.group-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.group-header .add {
+    max-width: 350px;
+    width: 100%;
+}
+
+.group-header .add form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.group-header .form-group {
+    margin-bottom: 0;
+}
+
+.group-header .add .user-field {
+    flex-grow: 1;
+    margin-left: 0.5rem;
+}
+.choices__list.choices__list--dropdown.is-active {
+    z-index: 999999;
+}
+</style>
+{% set removeForm = form({
+    "handler": "Finnito\\GroupManagerModule\\Form\\RemoveFromGroupForm@handle",
+    'fields': {
+        "username": {
+            "type": "text",
+            "required": true
+        },
+        "role": {
+            "type": "text",
+            "required": true
+        }
+    },
+    "actions": {
+        "remove": {
+            "type": "danger",
+            "text": ""
+        }
+    }
+}).get() %}
+
+{% set addForm = form({
+    "handler": "Finnito\\GroupManagerModule\\Form\\AddToGroupForm@handle",
+    "fields": {
+        "user": {
+            "type": "relationship",
+            "required": true,
+            "config": {
+                "related": "Anomaly\\UsersModule\\User\\UserModel",
+                "mode": "search"
+            }
+        },
+        "role": {
+            "type": "text",
+            "required": true
+        }
+    },
+    "actions": {
+        "add": {
+            "type": "success",
+            "text": "Add"
+        }
+    }
+}).get() %}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-block">
+            <div class="text">
+                <h1>Group Manager</h1>
+                <p>This module intends to allow for easier management of user groups than currently exists in the Users Module.</p>
+
+                {% for group in groups %}
+                    <div class="group">
+                        <div class="group-header">
+                            <div class="name">
+                                <h2>{{ group.name }}</h2>
+                            </div>
+                            <div class="add">
+                                {{ addForm.open({"class": "add-form"})|raw }}
+                                {{ addForm.actions|raw }}
+                                {{ addForm.fields.user|raw }}
+                                {{ addForm.fields.role.setValue(group.slug)|raw }}
+                                {{ addForm.close|raw }}
+                            </div>
+                        </div>
+                        <div class="users">
+                        {% for user in group.users %}
+                            <div class="user">
+                                <span>{{ user.display_name }}</span>
+                                {{ removeForm.open({"class": "remove-form"})|raw }}
+                                {{ removeForm.fields.username.setValue(user.username)|raw }}
+                                {{ removeForm.fields.role.setValue(group.slug)|raw }}
+                                {{ removeForm.actions|raw }}
+                                {{ removeForm.close|raw}}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
