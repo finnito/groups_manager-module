@@ -1,9 +1,9 @@
 {
-    "name": "finnito/group_manager-module",
+    "name": "finnito/groups_manager-module",
     "type": "streams-addon",
     "autoload": {
         "psr-4": {
-            "Finnito\\GroupManagerModule\\": "src/"
+            "Finnito\\GroupsManagerModule\\": "src/"
         }
     }
 }

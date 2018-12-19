@@ -1,4 +1,4 @@
-<?php namespace Finnito\GroupManagerModule\Form;
+<?php namespace Finnito\GroupsManagerModule\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Illuminate\Contracts\Auth\Guard;

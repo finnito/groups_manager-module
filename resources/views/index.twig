@@ -71,7 +71,7 @@
 }
 </style>
 {% set removeForm = form({
-    "handler": "Finnito\\GroupManagerModule\\Form\\RemoveFromGroupForm@handle",
+    "handler": "Finnito\\GroupsManagerModule\\Form\\RemoveFromGroupForm@handle",
     'fields': {
         "username": {
             "type": "text",
@@ -91,7 +91,7 @@
 }).get() %}
 
 {% set addForm = form({
-    "handler": "Finnito\\GroupManagerModule\\Form\\AddToGroupForm@handle",
+    "handler": "Finnito\\GroupsManagerModule\\Form\\AddToGroupForm@handle",
     "fields": {
         "user": {
             "type": "relationship",

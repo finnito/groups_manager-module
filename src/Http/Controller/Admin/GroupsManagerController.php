@@ -1,15 +1,15 @@
-<?php namespace Finnito\GroupManagerModule\Http\Controller\Admin;
+<?php namespace Finnito\GroupsManagerModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 
 /**
- * Class GroupManagerController
+ * Class GroupsManagerController
  *
  * @link          https://finnito.nz/
  * @author        Finn LeSueur <finn.lesueur@gmail.com>
  */
-class GroupManagerController extends AdminController
+class GroupsManagerController extends AdminController
 {
 
     /**

@@ -1,14 +1,14 @@
-<?php namespace Finnito\GroupManagerModule;
+<?php namespace Finnito\GroupsManagerModule;
 
 use Anomaly\Streams\Platform\Addon\Module\Module;
 
 /**
- * Class GroupManagerModule
+ * Class GroupsManagerModule
  *
  * @link          https://finnito.nz/
  * @author        Finn LeSueur <finn.lesueur@gmail.com>
  */
-class GroupManagerModule extends Module
+class GroupsManagerModule extends Module
 {
 
     /**

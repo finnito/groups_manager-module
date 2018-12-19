@@ -1,4 +1,4 @@
-<?php namespace Finnito\GroupManagerModule\Form\Support;
+<?php namespace Finnito\GroupsManagerModule\Form\Support;
 
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\RelationshipFieldType\RelationshipFieldType;

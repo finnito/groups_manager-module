@@ -1,6 +1,6 @@
-<?php namespace Finnito\GroupManagerModule\Test\Feature;
+<?php namespace Finnito\GroupsManagerModule\Test\Feature;
 
-class GroupManagerModuleTest extends \TestCase
+class GroupsManagerModuleTest extends \TestCase
 {
 
     public function testFeature()

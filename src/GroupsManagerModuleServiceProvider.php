@@ -1,15 +1,15 @@
-<?php namespace Finnito\GroupManagerModule;
+<?php namespace Finnito\GroupsManagerModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Illuminate\Routing\Router;
 
 /**
- * Class GroupManagerModuleServiceProvider
+ * Class GroupsManagerModuleServiceProvider
  *
  * @link          https://finnito.nz/
  * @author        Finn LeSueur <finn.lesueur@gmail.com>
  */
-class GroupManagerModuleServiceProvider extends AddonServiceProvider
+class GroupsManagerModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
@@ -46,7 +46,7 @@ class GroupManagerModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $routes = [
-        "/admin/group_manager" => "Finnito\GroupManagerModule\Http\Controller\Admin\GroupManagerController@index",
+        "/admin/groups_manager" => "Finnito\GroupsManagerModule\Http\Controller\Admin\GroupsManagerController@index",
     ];
 
     /**
@@ -55,7 +55,7 @@ class GroupManagerModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $middleware = [
-        //Finnito\GroupManagerModule\Http\Middleware\ExampleMiddleware::class
+        //Finnito\GroupsManagerModule\Http\Middleware\ExampleMiddleware::class
     ];
 
     /**
@@ -65,7 +65,7 @@ class GroupManagerModuleServiceProvider extends AddonServiceProvider
      */
     protected $groupMiddleware = [
         //'web' => [
-        //    Finnito\GroupManagerModule\Http\Middleware\ExampleMiddleware::class,
+        //    Finnito\GroupsManagerModule\Http\Middleware\ExampleMiddleware::class,
         //],
     ];
 
@@ -82,8 +82,8 @@ class GroupManagerModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $listeners = [
-        //Finnito\GroupManagerModule\Event\ExampleEvent::class => [
-        //    Finnito\GroupManagerModule\Listener\ExampleListener::class,
+        //Finnito\GroupsManagerModule\Event\ExampleEvent::class => [
+        //    Finnito\GroupsManagerModule\Listener\ExampleListener::class,
         //],
     ];
 
@@ -93,7 +93,7 @@ class GroupManagerModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $aliases = [
-        //'Example' => Finnito\GroupManagerModule\Example::class
+        //'Example' => Finnito\GroupsManagerModule\Example::class
     ];
 
     /**
