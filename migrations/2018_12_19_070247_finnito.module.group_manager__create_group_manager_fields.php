@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
-class FinnitoModuleGroupsManagerCreateGroupsManagerFields extends Migration
+class FinnitoModuleGroupManagerCreateGroupManagerFields extends Migration
 {
 
     /**

@@ -25,7 +25,7 @@ class GroupsManagerController extends AdminController
             ->whereNotIn("slug", ["admin", "guest", "user"])
             ->get();
         return $this->view->make(
-            "finnito.module.group_manager::index",
+            "finnito.module.groups_manager::index",
             [
                 "groups" => $groups,
             ]
