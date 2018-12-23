@@ -7,6 +7,10 @@
     padding-bottom: 0.5rem;
     margin-top: 0.5rem;
     border-top: 1px solid #eceeef;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 .remove-form .form-group,
 .add-form .role-field {
@@ -38,31 +42,33 @@
     padding-right: 0.25rem;
 }
 
-.group-header {
+/*.group-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
+}*/
 
 
-.group-header .add {
+.group .add {
+    border-left: 1px solid #E9EBED;
+    padding-left: 0.5rem;
     max-width: 350px;
     width: 100%;
 }
 
-.group-header .add form {
+.group .add form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-end;
 }
 
-.group-header .form-group {
+.group .form-group {
     margin-bottom: 0;
 }
 
-.group-header .add .user-field {
+.group .add .user-field {
     flex-grow: 1;
     margin-left: 0.5rem;
 }
@@ -94,11 +100,11 @@
     "handler": "Finnito\\GroupsManagerModule\\Form\\AddToGroupForm@handle",
     "fields": {
         "user": {
-            "type": "relationship",
+            "type": "multiple",
             "required": true,
             "config": {
                 "related": "Anomaly\\UsersModule\\User\\UserModel",
-                "mode": "search"
+                "mode": "tags"
             }
         },
         "role": {
@@ -122,29 +128,31 @@
 
                 {% for group in groups %}
                     <div class="group">
-                        <div class="group-header">
+                        <div>
                             <div class="name">
                                 <h2>{{ group.name }}</h2>
                             </div>
-                            <div class="add">
-                                {{ addForm.open({"class": "add-form"})|raw }}
-                                {{ addForm.actions|raw }}
-                                {{ addForm.fields.user|raw }}
-                                {{ addForm.fields.role.setValue(group.slug)|raw }}
-                                {{ addForm.close|raw }}
+                            <div class="users">
+                            {% for user in group.users %}
+                                <div class="user">
+                                    <span>{{ user.display_name }}</span>
+                                    {{ removeForm.open({"class": "remove-form"})|raw }}
+                                    {{ removeForm.fields.username.setValue(user.username)|raw }}
+                                    {{ removeForm.fields.role.setValue(group.slug)|raw }}
+                                    {{ removeForm.actions|raw }}
+                                    {{ removeForm.close|raw}}
+                                </div>
+                            {% endfor %}
                             </div>
                         </div>
-                        <div class="users">
-                        {% for user in group.users %}
-                            <div class="user">
-                                <span>{{ user.display_name }}</span>
-                                {{ removeForm.open({"class": "remove-form"})|raw }}
-                                {{ removeForm.fields.username.setValue(user.username)|raw }}
-                                {{ removeForm.fields.role.setValue(group.slug)|raw }}
-                                {{ removeForm.actions|raw }}
-                                {{ removeForm.close|raw}}
+                        <div>
+                            <div class="add">
+                                {{ addForm.open({"class": "add-form"})|raw }}
+                                {{ addForm.fields.user|raw }}
+                                {{ addForm.fields.role.setValue(group.slug)|raw }}
+                                {{ addForm.actions|raw }}
+                                {{ addForm.close|raw }}
                             </div>
-                        {% endfor %}
                         </div>
                     </div>
                 {% endfor %}

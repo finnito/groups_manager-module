@@ -43,26 +43,30 @@ class AddToGroupForm
         }
 
         $values = $builder->getFormValues();
+        // dd($values);
 
         if (!$role = $roles->findBy("slug", $values["role"])) {
             $bag->error("Sorry, the role you asked for cannot be found.");
             redirect(url()->previous())->send();
         }
 
-        if (!$member = $users->find($values["user"])) {
-            $bag->error("Sorry, the user you asked to add cannot be found.");
+        for ($i = 0; $i < sizeof($values["user"]); $i++) {
+            $userID = $values["user"][$i];
+            if (!$member = $users->find($userID)) {
+                $bag->error("Sorry, user ID {$userID} cannot be found.");
+                redirect(url()->previous())->send();
+            }
+
+            if ($member->hasRole($values["role"])) {
+                $bag->error("Sorry, the user you asked to add already belongs to that group.");
+                redirect(url()->previous())->send();
+            }
+
+
+            $member->attachRole($role);
+            $users->save($member);
+            $bag->success("{$member->display_name} added to {$role->name}!");
             redirect(url()->previous())->send();
         }
-
-        if ($member->hasRole($values["role"])) {
-            $bag->error("Sorry, the user you asked to add already belongs to that group.");
-            redirect(url()->previous())->send();
-        }
-
-
-        $member->attachRole($role);
-        $users->save($member);
-        $bag->success("{$member->display_name} added to {$role->name}!");
-        redirect(url()->previous())->send();
     }
 }
